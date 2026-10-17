@@ -1,0 +1,20 @@
+{
+  "pbj_daily_staffing": {
+    "Bronze/pbj_daily_staffing/ingest_date=2026-10-01/PBJ_Daily_Nurse_Staffing_Q2_2024.csv": "\"8f3b3b20d9e65d2d3bc137aaac51c30d-10\""
+  },
+  "provider_info": {
+    "Bronze/provider_info/ingest_date=2026-10-01/NH_ProviderInfo_Oct2024.csv": "\"d1a4b040d754962fa56ed1c465618d90-2\""
+  },
+  "snf_vbp": {
+    "Bronze/snf_vbp/ingest_date=2026-10-01/FY_2024_SNF_VBP_Facility_Performance.csv": "\"a5e32b07f18f290fb7c95dbbf3a588d4\""
+  },
+  "quality_claims": {
+    "Bronze/quality_claims/ingest_date=2026-10-01/NH_QualityMsr_Claims_Oct2024.csv": "\"68dc2edb359b4f73abc74fb064fd4605-2\""
+  },
+  "quality_mds": {
+    "Bronze/quality_mds/ingest_date=2026-10-01/NH_QualityMsr_MDS_Oct2024.csv": "\"71e0e10528f292884a3612b6aa9ee9e4-10\""
+  },
+  "penalties": {
+    "Bronze/penalties/ingest_date=2026-10-01/NH_Penalties_Oct2024.csv": "\"ecd685dec0361b9e83eff801ee36a48d\""
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "PBJ_Daily_Nurse_Staffing_Q2_2024.csv": {
+    "md5Checksum": "a160f1f952205e5f8339ea3f24316b57",
+    "modifiedTime": "2026-09-30T22:57:23.490Z",
+    "s3_key": "Bronze/pbj_daily_staffing/ingest_date=2026-10-01/PBJ_Daily_Nurse_Staffing_Q2_2024.csv"
+  },
+  "NH_Penalties_Oct2024.csv": {
+    "md5Checksum": "ecd685dec0361b9e83eff801ee36a48d",
+    "modifiedTime": "2026-09-25T19:34:26.242Z",
+    "s3_key": "Bronze/penalties/ingest_date=2026-10-01/NH_Penalties_Oct2024.csv"
+  },
+  "FY_2024_SNF_VBP_Facility_Performance.csv": {
+    "md5Checksum": "a5e32b07f18f290fb7c95dbbf3a588d4",
+    "modifiedTime": "2026-09-25T19:34:02.662Z",
+    "s3_key": "Bronze/snf_vbp/ingest_date=2026-10-01/FY_2024_SNF_VBP_Facility_Performance.csv"
+  },
+  "NH_QualityMsr_MDS_Oct2024.csv": {
+    "md5Checksum": "7a99d954042c2c52b17a21e40b0d50bd",
+    "modifiedTime": "2026-09-25T19:33:36.687Z",
+    "s3_key": "Bronze/quality_mds/ingest_date=2026-10-01/NH_QualityMsr_MDS_Oct2024.csv"
+  },
+  "NH_QualityMsr_Claims_Oct2024.csv": {
+    "md5Checksum": "c03b68f2167b3fb3a1cde0cc2fe5c2a7",
+    "modifiedTime": "2026-09-25T19:32:58.285Z",
+    "s3_key": "Bronze/quality_claims/ingest_date=2026-10-01/NH_QualityMsr_Claims_Oct2024.csv"
+  },
+  "NH_ProviderInfo_Oct2024.csv": {
+    "md5Checksum": "0592154a26645c98e95c3f735b7a213c",
+    "modifiedTime": "2026-09-25T19:32:27.840Z",
+    "s3_key": "Bronze/provider_info/ingest_date=2026-10-01/NH_ProviderInfo_Oct2024.csv"
+  }
+}

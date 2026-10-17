@@ -1,0 +1,5 @@
+occupancy_band,facilities,avg_hprd,avg_contract_pct,overall_correlation
+1: <60%,2103,3.37,7.4,0.011
+2: 60-75%,3008,3.3,7.6,0.011
+3: 75-90%,5186,3.35,7.7,0.011
+4: 90%+,4248,3.42,6.3,0.011
