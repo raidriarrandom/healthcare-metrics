@@ -1,35 +1,38 @@
-"""Glue Spark job: build the two Gold tables from Silver and write them to S3 as Parquet.
+# Glue Spark job: build the two Gold tables from Silver and save them to S3 as Parquet.
+#
+# Gold tables:
+#   gold_daily_staffing   = one row per facility per day (staffing, census, occupancy, contract share, quality flag)
+#   gold_facility_metrics = one row per facility for the quarter, joined with ProviderInfo,
+#                           VBP readmission rates and the claims rehospitalization measure (521)
+#
+# Definitions (see docs/solution_design_doc.md):
+#   nurse_hours    = RN + LPN + CNA direct-care hours (admin and director hours left out)
+#   contract_share = contract hours / nurse hours (closest thing to overtime; PBJ has no overtime column)
+#   occupancy_rate = census / certified beds
+#   is_valid_day   = census > 0 AND nurse_hours > 0 AND nurse hours per resident <= 24
+#                    (other rows are missing reports or impossible values). Facility metrics use valid days only.
+#
+# Incremental: if nothing new reached Silver since the last Gold build, the job stops early.
 
-Gold tables
-  gold_daily_staffing  : one row per facility per day (staffing, census, occupancy, contract share, quality flag)
-  gold_facility_metrics: one row per facility for the quarter, joined to ProviderInfo, VBP readmissions
-                         and the claims rehospitalization measure (521)
-
-Definitions (assumptions, see docs/solution_design_doc.md):
-  nurse_hours    = RN + LPN + CNA direct-care hours (administrative and director hours excluded)
-  contract_share = contract hours / nurse hours   (closest available proxy for overtime; PBJ has no overtime column)
-  occupancy_rate = census / federally certified beds
-  is_valid_day   = census > 0, nurse_hours > 0 and nurse hours per resident day <= 24 (from the Step 2 profiling:
-                   rows outside this are missing reports or impossible values). Facility metrics use valid days only.
-Reference tables (provider_info, snf_vbp, quality_claims) use their latest ingest_date partition only.
-Incremental: the job compares Silver's state file with the one recorded at the last Gold build
-(_state/gold_built.json) and exits early when nothing new reached Silver.
-The SQL below is plain ANSI SQL so it can also be tested outside Glue.
-"""
 import json
 
 import boto3
 from awsglue.context import GlueContext
 from awsglue.job import Job
-from botocore.exceptions import ClientError
 from pyspark.context import SparkContext
 from pyspark.sql import functions as F
 
+
+# ---------- Settings ----------
 BUCKET = "healthcare-project122"
 REGION = "us-west-1"
 SILVER_STATE_KEY = "_state/silver_processed.json"
 GOLD_STATE_KEY = "_state/gold_built.json"
+SILVER = "s3://" + BUCKET + "/Silver/"
 
+
+# ---------- The Gold SQL ----------
+# Table 1: one row per facility per day
 GOLD_DAILY_SQL = """
 WITH base AS (
     SELECT
@@ -60,6 +63,7 @@ SELECT
 FROM base
 """
 
+# Table 2: one row per facility (built from table 1)
 GOLD_FACILITY_SQL = """
 WITH day_counts AS (
     SELECT ccn,
@@ -111,50 +115,63 @@ LEFT JOIN (SELECT ccn, adjusted_score FROM quality_claims WHERE measure_code = '
 """
 
 
-def latest_partition(df):
-    latest = df.agg(F.max("ingest_date")).first()[0]
-    return df.filter(F.col("ingest_date") == latest)
-
-
-def read_json(s3, key: str) -> dict:
+# ---------- Helper function ----------
+def read_state_file(key):
+    # Read a small JSON file from S3. Returns {} if it doesn't exist yet.
     try:
-        return json.loads(s3.get_object(Bucket=BUCKET, Key=key)["Body"].read())
-    except ClientError as e:
-        if e.response["Error"]["Code"] == "NoSuchKey":
-            return {}
-        raise
+        response = s3.get_object(Bucket=BUCKET, Key=key)
+        return json.loads(response["Body"].read())
+    except s3.exceptions.NoSuchKey:
+        return {}
 
 
-def main() -> None:
-    sc = SparkContext.getOrCreate()
-    glue = GlueContext(sc)
-    spark = glue.spark_session
-    job = Job(glue)
-    job.init("healthcare-silver-to-gold", {})
+# ---------- Step 1: start Spark and connect to S3 ----------
+spark_context = SparkContext.getOrCreate()
+glue_context = GlueContext(spark_context)
+spark = glue_context.spark_session
+job = Job(glue_context)
+job.init("healthcare-silver-to-gold", {})
 
-    s3 = boto3.client("s3", region_name=REGION)
-    silver_state = read_json(s3, SILVER_STATE_KEY)
-    if read_json(s3, GOLD_STATE_KEY).get("silver_state") == silver_state:
-        print("Silver unchanged since the last Gold build; nothing to do")
-        job.commit()
-        return
+s3 = boto3.client("s3", region_name=REGION)
 
-    silver = f"s3://{BUCKET}/Silver"
-    spark.read.parquet(f"{silver}/pbj_daily_staffing/").createOrReplaceTempView("pbj_daily_staffing")
-    for t in ["provider_info", "snf_vbp", "quality_claims"]:
-        latest_partition(spark.read.parquet(f"{silver}/{t}/")).createOrReplaceTempView(t)
 
-    daily = spark.sql(GOLD_DAILY_SQL).cache()
+# ---------- Step 2: stop early if Silver hasn't changed ----------
+silver_state = read_state_file(SILVER_STATE_KEY)    # what Silver has processed so far
+gold_state = read_state_file(GOLD_STATE_KEY)        # what Silver looked like at the last Gold build
+
+if gold_state.get("silver_state") == silver_state:
+    print("Silver unchanged since the last Gold build; nothing to do")
+else:
+    # ---------- Step 3: load the Silver tables Gold needs ----------
+    # The staffing table: every ingest date
+    pbj = spark.read.parquet(SILVER + "pbj_daily_staffing/")
+    pbj.createOrReplaceTempView("pbj_daily_staffing")
+
+    # Reference tables: only their newest ingest date (so an old copy never doubles the rows)
+    for table in ["provider_info", "snf_vbp", "quality_claims"]:
+        df = spark.read.parquet(SILVER + table + "/")
+        newest_date = df.agg(F.max("ingest_date")).first()[0]
+        df = df.filter(F.col("ingest_date") == newest_date)
+        df.createOrReplaceTempView(table)
+
+
+    # ---------- Step 4: build the two Gold tables with SQL ----------
+    daily = spark.sql(GOLD_DAILY_SQL)
+    daily = daily.cache()                     # keep it in memory: table 2 reads it again
     daily.createOrReplaceTempView("gold_daily_staffing")
+
     facility = spark.sql(GOLD_FACILITY_SQL)
 
-    for name, df in [("gold_daily_staffing", daily), ("gold_facility_metrics", facility)]:
-        dest = f"s3://{BUCKET}/Gold/{name}/"
-        df.write.mode("overwrite").parquet(dest)
-        print(f"wrote {dest}")
-    s3.put_object(Bucket=BUCKET, Key=GOLD_STATE_KEY, Body=json.dumps({"silver_state": silver_state}).encode())
-    job.commit()
+
+    # ---------- Step 5: save both to S3 Gold ----------
+    daily.write.mode("overwrite").parquet("s3://" + BUCKET + "/Gold/gold_daily_staffing/")
+    print("wrote s3://" + BUCKET + "/Gold/gold_daily_staffing/")
+
+    facility.write.mode("overwrite").parquet("s3://" + BUCKET + "/Gold/gold_facility_metrics/")
+    print("wrote s3://" + BUCKET + "/Gold/gold_facility_metrics/")
 
 
-if __name__ == "__main__":
-    main()
+    # ---------- Step 6: remember what Silver looked like for this build ----------
+    s3.put_object(Bucket=BUCKET, Key=GOLD_STATE_KEY, Body=json.dumps({"silver_state": silver_state}))
+
+job.commit()
