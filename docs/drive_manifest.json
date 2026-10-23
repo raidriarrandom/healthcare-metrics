@@ -28,5 +28,80 @@
     "md5Checksum": "0592154a26645c98e95c3f735b7a213c",
     "modifiedTime": "2026-09-25T19:32:27.840Z",
     "s3_key": "Bronze/provider_info/ingest_date=2026-10-01/NH_ProviderInfo_Oct2024.csv"
+  },
+  "NH_CovidVaxProvider_20241027.csv": {
+    "md5Checksum": "7e288ccf5f11651f48b306fd2c682565",
+    "modifiedTime": "2026-10-23T18:04:29.751Z",
+    "s3_key": "Bronze/covid_vax_provider_20241027/ingest_date=2026-10-23/NH_CovidVaxProvider_20241027.csv"
+  },
+  "NH_DataCollectionIntervals_Oct2024.csv": {
+    "md5Checksum": "fade6bd236b37eedb1806e9641d05736",
+    "modifiedTime": "2026-10-23T18:04:29.139Z",
+    "s3_key": "Bronze/data_collection_intervals/ingest_date=2026-10-23/NH_DataCollectionIntervals_Oct2024.csv"
+  },
+  "NH_Ownership_Oct2024.csv": {
+    "md5Checksum": "1d210bd19a0d445a55c65ebb0a7f99d8",
+    "modifiedTime": "2026-10-23T18:04:28.055Z",
+    "s3_key": "Bronze/ownership/ingest_date=2026-10-23/NH_Ownership_Oct2024.csv"
+  },
+  "NH_HealthCitations_Oct2024.csv": {
+    "md5Checksum": "6760b9b75dbcc403a08bd1b0745d8704",
+    "modifiedTime": "2026-10-23T18:04:27.513Z",
+    "s3_key": "Bronze/health_citations/ingest_date=2026-10-23/NH_HealthCitations_Oct2024.csv"
+  },
+  "NH_CovidVaxAverages_20241027.csv": {
+    "md5Checksum": "ed6334063cf13f5fd0feccbce9162d98",
+    "modifiedTime": "2026-10-23T18:04:26.887Z",
+    "s3_key": "Bronze/covid_vax_averages_20241027/ingest_date=2026-10-23/NH_CovidVaxAverages_20241027.csv"
+  },
+  "Skilled_Nursing_Facility_Quality_Reporting_Program_Provider_Data_Oct2024.csv": {
+    "md5Checksum": "81ba9e7e766760d1730afa07535696b9",
+    "modifiedTime": "2026-10-23T18:04:26.362Z",
+    "s3_key": "Bronze/snf_qrp_provider/ingest_date=2026-10-23/Skilled_Nursing_Facility_Quality_Reporting_Program_Provider_Data_Oct2024.csv"
+  },
+  "NH_StateUSAverages_Oct2024.csv": {
+    "md5Checksum": "6d52b8c8ea38af2de2f7204dde0791e4",
+    "modifiedTime": "2026-10-23T18:04:25.524Z",
+    "s3_key": "Bronze/state_us_averages/ingest_date=2026-10-23/NH_StateUSAverages_Oct2024.csv"
+  },
+  "NH_SurveySummary_Oct2024.csv": {
+    "md5Checksum": "99de5f4044795d77a0e45271c33108cd",
+    "modifiedTime": "2026-10-23T18:04:24.931Z",
+    "s3_key": "Bronze/survey_summary/ingest_date=2026-10-23/NH_SurveySummary_Oct2024.csv"
+  },
+  "NH_SurveyDates_Oct2024.csv": {
+    "md5Checksum": "7457076b2b619926c5b17b39e39ad017",
+    "modifiedTime": "2026-10-23T18:04:24.376Z",
+    "s3_key": "Bronze/survey_dates/ingest_date=2026-10-23/NH_SurveyDates_Oct2024.csv"
+  },
+  "NH_CitationDescriptions_Oct2024.csv": {
+    "md5Checksum": "32c9093942a3ffc0de9afc62662e44e7",
+    "modifiedTime": "2026-10-23T18:04:23.821Z",
+    "s3_key": "Bronze/citation_descriptions/ingest_date=2026-10-23/NH_CitationDescriptions_Oct2024.csv"
+  },
+  "Swing_Bed_SNF_data_Oct2024.csv": {
+    "md5Checksum": "cd0d283fba2ad5ea44e9cbfe8533f82e",
+    "modifiedTime": "2026-10-23T18:04:23.252Z",
+    "s3_key": "Bronze/swing_bed_snf_data/ingest_date=2026-10-23/Swing_Bed_SNF_data_Oct2024.csv"
+  },
+  "Skilled_Nursing_Facility_Quality_Reporting_Program_National_Data_Oct2024.csv": {
+    "md5Checksum": "4c8e90a84a8a935c138fc0b913e42796",
+    "modifiedTime": "2026-10-23T18:04:22.679Z",
+    "s3_key": "Bronze/skilled_nursing_facility_quality_reporting_program_national_data/ingest_date=2026-10-23/Skilled_Nursing_Facility_Quality_Reporting_Program_National_Data_Oct2024.csv"
+  },
+  "FY_2024_SNF_VBP_Aggregate_Performance.csv": {
+    "md5Checksum": "61a66231e85ab829c191701a37458ec4",
+    "modifiedTime": "2026-10-23T18:04:22.095Z",
+    "s3_key": "Bronze/fy_2024_snf_vbp_aggregate_performance/ingest_date=2026-10-23/FY_2024_SNF_VBP_Aggregate_Performance.csv"
+  },
+  "NH_HlthInspecCutpointsState_Oct2024.csv": {
+    "md5Checksum": "8d608a67c2048cc1837da7f28b70e07f",
+    "modifiedTime": "2026-10-23T18:04:21.511Z",
+    "s3_key": "Bronze/hlth_inspec_cutpoints_state/ingest_date=2026-10-23/NH_HlthInspecCutpointsState_Oct2024.csv"
+  },
+  "NH_FireSafetyCitations_Oct2024.csv": {
+    "md5Checksum": "4c9f7144a58628026b70b8a45f1dfceb",
+    "modifiedTime": "2026-10-23T18:04:01.064Z",
+    "s3_key": "Bronze/fire_safety_citations/ingest_date=2026-10-23/NH_FireSafetyCitations_Oct2024.csv"
   }
 }

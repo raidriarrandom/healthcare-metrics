@@ -8,12 +8,27 @@ Every file was opened with pandas, its rows were counted, and its MD5 was compar
 
 | file | size_mb | opens | rows | columns | md5_matches_drive |
 |---|---|---|---|---|---|
+| FY_2024_SNF_VBP_Aggregate_Performance.csv | 0.0 | yes | 1 | 9 | yes |
 | FY_2024_SNF_VBP_Facility_Performance.csv | 1.8 | yes | 10858 | 20 | yes |
+| NH_CitationDescriptions_Oct2024.csv | 0.1 | yes | 641 | 5 | yes |
+| NH_CovidVaxAverages_20241027.csv | 0.0 | yes | 54 | 4 | yes |
+| NH_CovidVaxProvider_20241027.csv | 0.6 | yes | 14814 | 5 | yes |
+| NH_DataCollectionIntervals_Oct2024.csv | 0.0 | yes | 45 | 6 | yes |
+| NH_FireSafetyCitations_Oct2024.csv | 69.2 | yes | 200003 | 24 | yes |
+| NH_HealthCitations_Oct2024.csv | 158.9 | yes | 402424 | 23 | yes |
+| NH_HlthInspecCutpointsState_Oct2024.csv | 0.0 | yes | 53 | 6 | yes |
+| NH_Ownership_Oct2024.csv | 33.2 | yes | 145354 | 13 | yes |
 | NH_Penalties_Oct2024.csv | 4.7 | yes | 28505 | 13 | yes |
 | NH_ProviderInfo_Oct2024.csv | 9.4 | yes | 14814 | 103 | yes |
 | NH_QualityMsr_Claims_Oct2024.csv | 16.7 | yes | 59256 | 17 | yes |
 | NH_QualityMsr_MDS_Oct2024.csv | 80.7 | yes | 266652 | 23 | yes |
+| NH_StateUSAverages_Oct2024.csv | 0.0 | yes | 54 | 48 | yes |
+| NH_SurveyDates_Oct2024.csv | 8.3 | yes | 159723 | 5 | yes |
+| NH_SurveySummary_Oct2024.csv | 10.0 | yes | 44243 | 41 | yes |
 | PBJ_Daily_Nurse_Staffing_Q2_2024.csv | 219.7 | yes | 1325324 | 33 | yes |
+| Skilled_Nursing_Facility_Quality_Reporting_Program_National_Data_Oct2024.csv | 0.0 | yes | 24 | 7 | yes |
+| Skilled_Nursing_Facility_Quality_Reporting_Program_Provider_Data_Oct2024.csv | 155.9 | yes | 711072 | 16 | yes |
+| Swing_Bed_SNF_data_Oct2024.csv | 6.6 | yes | 38064 | 16 | yes |
 
 ## Schema and relationships
 
@@ -21,12 +36,27 @@ The facility key is the 6-character CMS Certification Number: `PROVNUM` in PBJ, 
 
 | file | key column | grain (one row per) | distinct facilities | facilities also in PBJ |
 |---|---|---|---|---|
+| FY_2024_SNF_VBP_Aggregate_Performance.csv | (none: state level) | state |  |  |
 | FY_2024_SNF_VBP_Facility_Performance.csv | CMS Certification Number (CCN) | facility | 10858 | 10,595 |
+| NH_CitationDescriptions_Oct2024.csv | (none: state level) | state |  |  |
+| NH_CovidVaxAverages_20241027.csv | (none: state level) | state |  |  |
+| NH_CovidVaxProvider_20241027.csv | CMS Certification Number (CCN) | facility | 14814 | 14,547 |
+| NH_DataCollectionIntervals_Oct2024.csv | (none: state level) | state |  |  |
+| NH_FireSafetyCitations_Oct2024.csv | CMS Certification Number (CCN) | facility per measure/event | 14019 | 13,784 |
+| NH_HealthCitations_Oct2024.csv | CMS Certification Number (CCN) | facility per measure/event | 14719 | 14,476 |
+| NH_HlthInspecCutpointsState_Oct2024.csv | (none: state level) | state |  |  |
+| NH_Ownership_Oct2024.csv | CMS Certification Number (CCN) | facility per measure/event | 14814 | 14,547 |
 | NH_Penalties_Oct2024.csv | CMS Certification Number (CCN) | facility per measure/event | 9255 | 9,093 |
 | NH_ProviderInfo_Oct2024.csv | CMS Certification Number (CCN) | facility | 14814 | 14,547 |
 | NH_QualityMsr_Claims_Oct2024.csv | CMS Certification Number (CCN) | facility per measure/event | 14814 | 14,547 |
 | NH_QualityMsr_MDS_Oct2024.csv | CMS Certification Number (CCN) | facility per measure/event | 14814 | 14,547 |
+| NH_StateUSAverages_Oct2024.csv | (none: state level) | state |  |  |
+| NH_SurveyDates_Oct2024.csv | CMS Certification Number (CCN) | facility per measure/event | 14814 | 14,547 |
+| NH_SurveySummary_Oct2024.csv | CMS Certification Number (CCN) | facility per measure/event | 14814 | 14,547 |
 | PBJ_Daily_Nurse_Staffing_Q2_2024.csv | PROVNUM | facility per day | 14564 | 14,564 |
+| Skilled_Nursing_Facility_Quality_Reporting_Program_National_Data_Oct2024.csv | CMS Certification Number (CCN) | facility per measure/event | 1 | 0 |
+| Skilled_Nursing_Facility_Quality_Reporting_Program_Provider_Data_Oct2024.csv | CMS Certification Number (CCN) | facility per measure/event | 14814 | 14,547 |
+| Swing_Bed_SNF_data_Oct2024.csv | CMS Certification Number (CCN) | facility per measure/event | 793 | 0 |
 
 ## Step 2: Missing values, duplicates, outliers
 
@@ -48,9 +78,45 @@ The facility key is the 6-character CMS Certification Number: `PROVNUM` in PBJ, 
 ![hist_hprd.png](images/hist_hprd.png)
 ![trend_daily_hprd.png](images/trend_daily_hprd.png)
 
+### FY_2024_SNF_VBP_Aggregate_Performance.csv
+
+No missing values.
+
 ### FY_2024_SNF_VBP_Facility_Performance.csv
 
 ![missing values](images/missing_FY_2024_SNF_VBP_Facility_Performance.png)
+
+### NH_CitationDescriptions_Oct2024.csv
+
+No missing values.
+
+### NH_CovidVaxAverages_20241027.csv
+
+No missing values.
+
+### NH_CovidVaxProvider_20241027.csv
+
+No missing values.
+
+### NH_DataCollectionIntervals_Oct2024.csv
+
+![missing values](images/missing_NH_DataCollectionIntervals_Oct2024.png)
+
+### NH_FireSafetyCitations_Oct2024.csv
+
+![missing values](images/missing_NH_FireSafetyCitations_Oct2024.png)
+
+### NH_HealthCitations_Oct2024.csv
+
+![missing values](images/missing_NH_HealthCitations_Oct2024.png)
+
+### NH_HlthInspecCutpointsState_Oct2024.csv
+
+No missing values.
+
+### NH_Ownership_Oct2024.csv
+
+![missing values](images/missing_NH_Ownership_Oct2024.png)
 
 ### NH_Penalties_Oct2024.csv
 
@@ -68,16 +134,55 @@ The facility key is the 6-character CMS Certification Number: `PROVNUM` in PBJ, 
 
 ![missing values](images/missing_NH_QualityMsr_MDS_Oct2024.png)
 
+### NH_StateUSAverages_Oct2024.csv
+
+![missing values](images/missing_NH_StateUSAverages_Oct2024.png)
+
+### NH_SurveyDates_Oct2024.csv
+
+No missing values.
+
+### NH_SurveySummary_Oct2024.csv
+
+![missing values](images/missing_NH_SurveySummary_Oct2024.png)
+
+### Skilled_Nursing_Facility_Quality_Reporting_Program_National_Data_Oct2024.csv
+
+No missing values.
+
+### Skilled_Nursing_Facility_Quality_Reporting_Program_Provider_Data_Oct2024.csv
+
+No missing values.
+
+### Swing_Bed_SNF_data_Oct2024.csv
+
+No missing values.
+
 ### Summary across files
 
 | file | rows | cells missing | columns >50% missing | fully empty columns | duplicate rows |
 |---|---|---|---|---|---|
+| FY_2024_SNF_VBP_Aggregate_Performance.csv | 1 | 0.0% | 0 | 0 | 0 |
 | FY_2024_SNF_VBP_Facility_Performance.csv | 10,858 | 34.5% | 7 | 5 | 0 |
+| NH_CitationDescriptions_Oct2024.csv | 641 | 0.0% | 0 | 0 | 0 |
+| NH_CovidVaxAverages_20241027.csv | 54 | 0.0% | 0 | 0 | 0 |
+| NH_CovidVaxProvider_20241027.csv | 14,814 | 0.0% | 0 | 0 | 0 |
+| NH_DataCollectionIntervals_Oct2024.csv | 45 | 16.7% | 1 | 1 | 0 |
+| NH_FireSafetyCitations_Oct2024.csv | 200,003 | 0.0% | 0 | 0 | 0 |
+| NH_HealthCitations_Oct2024.csv | 402,424 | 0.0% | 0 | 0 | 0 |
+| NH_HlthInspecCutpointsState_Oct2024.csv | 53 | 0.0% | 0 | 0 | 0 |
+| NH_Ownership_Oct2024.csv | 145,354 | 0.1% | 0 | 0 | 0 |
 | NH_Penalties_Oct2024.csv | 28,505 | 14.5% | 2 | 0 | 0 |
 | NH_ProviderInfo_Oct2024.csv | 14,814 | 15.2% | 15 | 0 | 0 |
 | NH_QualityMsr_Claims_Oct2024.csv | 59,256 | 8.3% | 1 | 0 | 0 |
 | NH_QualityMsr_MDS_Oct2024.csv | 266,652 | 21.7% | 5 | 0 | 0 |
+| NH_StateUSAverages_Oct2024.csv | 54 | 2.0% | 0 | 0 | 0 |
+| NH_SurveyDates_Oct2024.csv | 159,723 | 0.0% | 0 | 0 | 0 |
+| NH_SurveySummary_Oct2024.csv | 44,243 | 0.0% | 0 | 0 | 0 |
 | PBJ_Daily_Nurse_Staffing_Q2_2024.csv | 1,325,324 | 0.0% | 0 | 0 | 0 |
+| Skilled_Nursing_Facility_Quality_Reporting_Program_National_Data_Oct2024.csv | 24 | 0.0% | 0 | 0 | 0 |
+| Skilled_Nursing_Facility_Quality_Reporting_Program_Provider_Data_Oct2024.csv | 711,072 | 0.0% | 0 | 0 | 0 |
+| Swing_Bed_SNF_data_Oct2024.csv | 38,064 | 0.0% | 0 | 0 | 0 |
 
 ### Certified beds (needed for occupancy)
 
@@ -90,3 +195,66 @@ The facility key is the 6-character CMS Certification Number: `PROVNUM` in PBJ, 
 - Silver: snake_case names, `ccn` key padded to 6, empty strings to null, fully empty columns dropped, types inferred, exact duplicates removed.
 - Gold: `is_valid_day` excludes census-0 days, unreported days (0 nurse hours) and impossible HPRD (> 24). Facility and state metrics use valid days only.
 - PBJ has no overtime, shift, cost, department, time-of-day or length-of-stay fields; see `docs/metrics_and_findings.md` for which spec metrics are possible.
+
+
+
+
+
+You'd build your own EDA report by answering the same few questions for every file, then writing down what you found.
+
+The idea: an EDA (exploratory data analysis) is a health check on data before you build anything with it. For each file you ask:
+
+1. Did it arrive complete? (integrity)
+2. What's in it? (columns, types, row count)
+3. What's missing? (nulls)
+4. What's repeated? (duplicates)
+5. What looks wrong? (outliers, impossible values)
+6. How does it connect to the other files? (join keys)
+
+Picture it like a doctor's checkup form: same checklist for every patient (file), notes on anything unusual, and a summary at the end.
+
+Walkthrough: do it on ONE file first (the master)
+
+Open Terminal, start Python with your project's environment:
+~/.venvs/healthcare/bin/python
+
+Then type these lines one at a time and read each result:
+
+import pandas as pd
+df = pd.read_csv("/Users/raidriar/Library/Mobile Documents/com~apple~CloudDocs/1 - Data Engineering Academy/1 - Projects & Demos/Healthcare Orange Project/data/PBJ_Daily_Nurse_Staffing_Q2_2024.csv", encoding="latin-1")
+
+1. Shape (did it load completely?)
+df.shape
+→ (rows, columns). Write down the numbers.
+
+2. What's in it?
+df.head()
+df.dtypes
+→ the first 5 rows, then each column's type. Ask yourself: is WorkDate a number when it should be a date? Is PROVNUM a number when it should be text (leading zeros)?
+
+3. Missing values
+df.isnull().sum()
+→ the count of blanks per column.
+
+4. Duplicates
+df.duplicated().sum()
+df.duplicated(subset=["PROVNUM", "WorkDate"]).sum()
+→ the first counts fully identical rows. The second counts repeats of the same facility on the same day, which should be 0 for this grain.
+
+5. Outliers
+df.describe()
+→ min, max and average for every number column. Look for impossible values: negative hours, a census of 0, a max that's 100× the average.
+
+6. One chart
+import matplotlib.pyplot as plt
+df["MDScensus"].hist(bins=50)
+plt.savefig("hist_census.png")
+
+Then write the report
+
+Make a file my_eda.md and, for each file, write:
+- rows / columns
+- columns with missing values, and how many
+- duplicates found (yes/no, how many)
+- anything weird from describe()
+- what you'll do about it in the pipeline, e.g. "census = 0 days are excluded from ratios"

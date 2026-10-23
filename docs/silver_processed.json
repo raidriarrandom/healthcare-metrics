@@ -16,5 +16,50 @@
   },
   "penalties": {
     "Bronze/penalties/ingest_date=2026-10-01/NH_Penalties_Oct2024.csv": "\"ecd685dec0361b9e83eff801ee36a48d\""
+  },
+  "citation_descriptions": {
+    "Bronze/citation_descriptions/ingest_date=2026-10-23/NH_CitationDescriptions_Oct2024.csv": "\"32c9093942a3ffc0de9afc62662e44e7\""
+  },
+  "covid_vax_averages_20241027": {
+    "Bronze/covid_vax_averages_20241027/ingest_date=2026-10-23/NH_CovidVaxAverages_20241027.csv": "\"ed6334063cf13f5fd0feccbce9162d98\""
+  },
+  "covid_vax_provider_20241027": {
+    "Bronze/covid_vax_provider_20241027/ingest_date=2026-10-23/NH_CovidVaxProvider_20241027.csv": "\"7e288ccf5f11651f48b306fd2c682565\""
+  },
+  "data_collection_intervals": {
+    "Bronze/data_collection_intervals/ingest_date=2026-10-23/NH_DataCollectionIntervals_Oct2024.csv": "\"fade6bd236b37eedb1806e9641d05736\""
+  },
+  "fire_safety_citations": {
+    "Bronze/fire_safety_citations/ingest_date=2026-10-23/NH_FireSafetyCitations_Oct2024.csv": "\"f319f94f1fd7d3e8918f06c11e500706-9\""
+  },
+  "fy_2024_snf_vbp_aggregate_performance": {
+    "Bronze/fy_2024_snf_vbp_aggregate_performance/ingest_date=2026-10-23/FY_2024_SNF_VBP_Aggregate_Performance.csv": "\"61a66231e85ab829c191701a37458ec4\""
+  },
+  "health_citations": {
+    "Bronze/health_citations/ingest_date=2026-10-23/NH_HealthCitations_Oct2024.csv": "\"ee14c27a5d9cf1da62c22893ab612fbd-13\""
+  },
+  "hlth_inspec_cutpoints_state": {
+    "Bronze/hlth_inspec_cutpoints_state/ingest_date=2026-10-23/NH_HlthInspecCutpointsState_Oct2024.csv": "\"8d608a67c2048cc1837da7f28b70e07f\""
+  },
+  "ownership": {
+    "Bronze/ownership/ingest_date=2026-10-23/NH_Ownership_Oct2024.csv": "\"7ea37b7f9aa80902998c419d530c6e32-4\""
+  },
+  "skilled_nursing_facility_quality_reporting_program_national_data": {
+    "Bronze/skilled_nursing_facility_quality_reporting_program_national_data/ingest_date=2026-10-23/Skilled_Nursing_Facility_Quality_Reporting_Program_National_Data_Oct2024.csv": "\"4c8e90a84a8a935c138fc0b913e42796\""
+  },
+  "snf_qrp_provider": {
+    "Bronze/snf_qrp_provider/ingest_date=2026-10-23/Skilled_Nursing_Facility_Quality_Reporting_Program_Provider_Data_Oct2024.csv": "\"650c9a0630ab98167f29dd5ed50b7db8-19\""
+  },
+  "state_us_averages": {
+    "Bronze/state_us_averages/ingest_date=2026-10-23/NH_StateUSAverages_Oct2024.csv": "\"6d52b8c8ea38af2de2f7204dde0791e4\""
+  },
+  "survey_dates": {
+    "Bronze/survey_dates/ingest_date=2026-10-23/NH_SurveyDates_Oct2024.csv": "\"7457076b2b619926c5b17b39e39ad017\""
+  },
+  "survey_summary": {
+    "Bronze/survey_summary/ingest_date=2026-10-23/NH_SurveySummary_Oct2024.csv": "\"e35384a1f1d8d2cb897e932e3ebe67b5-2\""
+  },
+  "swing_bed_snf_data": {
+    "Bronze/swing_bed_snf_data/ingest_date=2026-10-23/Swing_Bed_SNF_data_Oct2024.csv": "\"cd0d283fba2ad5ea44e9cbfe8533f82e\""
   }
 }

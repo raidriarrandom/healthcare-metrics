@@ -17,7 +17,7 @@ ORANGE, GREEN, PURPLE, PINK, RED, GREY = "#ED7100", "#7AA116", "#8C4FFF", "#E715
 
 # id: (x, y, w, h, label, colour)   coordinates in a 1400 x 640 canvas, y downwards
 NODES = {
-    "drive":   (20, 250, 150, 80, "Google Drive\nfolder: master +\nsupporting CSVs", GREY),
+    "drive":   (20, 250, 150, 80, "Google Drive (source)\nmaster + 20\nsupporting CSVs", GREY),
     "sched":   (230, 40, 210, 70, "Glue Workflow\nscheduled trigger 06:00 PT", PINK),
     "secret":  (230, 470, 210, 70, "Secrets Manager\nDrive service account", RED),
     "ingest":  (230, 250, 210, 80, "Glue Python shell\nhealthcare-drive-ingest\n(md5 manifest = incremental)", ORANGE),
@@ -27,7 +27,7 @@ NODES = {
     "gold_j":  (990, 130, 190, 80, "Glue Spark\nsilver-gold\n(Spark SQL metrics)", ORANGE),
     "gold":    (990, 250, 190, 80, "S3 Gold\ngold_daily_staffing\ngold_facility_metrics", GREEN),
     "catalog": (730, 400, 450, 60, "Glue Crawlers → Glue Data Catalog (bronze_ / silver_ / gold_ tables)", PURPLE),
-    "athena":  (1230, 250, 150, 80, "Athena\nworkgroup + views", PURPLE),
+    "athena":  (1230, 250, 150, 80, "Athena = warehouse\nworkgroup + 4 views", PURPLE),
     "app":     (1230, 470, 150, 80, "Streamlit\ndashboard\n(boto3 → Athena)", GREY),
     "logs":    (500, 560, 680, 50, "CloudWatch Logs (every job and crawler)  ·  IAM role healthcare-project-glue-role (least privilege)", PINK),
 }
